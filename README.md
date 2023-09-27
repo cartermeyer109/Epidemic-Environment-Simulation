@@ -5,7 +5,7 @@ disease with no vaccine on humans over 300 days on a visual grid. All humans sta
 except for 1 human from each age class. Humans may move each day and the infecttion will spread
 based on age/distance from the infected/if the virus was previosuly had.
 
-Uninfetced: Can't spread the virus, suseptibilty to obtaining virus depends on if it was previously had
+Uninfected: Can't spread the virus, suseptibilty to obtaining virus depends on if it was previously had
 
 Incubation: The time between virus contact and symptoms. Capable of spreading the virus, can only turn symptomatic/asymptomatic
 
