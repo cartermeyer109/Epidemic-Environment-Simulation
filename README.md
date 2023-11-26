@@ -3,7 +3,7 @@
 This is an Epidemic Environment Simulation. This is a simulation that shows the spread of a
 disease with no vaccine on humans over 300 days on a visual grid. All humans start as uninfected
 except for 1 human from each age class (Child/Adult/Elder). Humans may move each day and the
-infecttion will spread based on age/distance from the infected/if the virus was previosuly had.
+infection will spread based on age/distance from the infected/if the virus was previously had.
 
 Uninfected: Can't spread the virus, suseptibilty to obtaining virus depends on if it was previously had
 
