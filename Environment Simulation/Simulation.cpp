@@ -14,103 +14,13 @@ Simulation::Simulation(int c, int a, int e, vector<vector<Human>> &vect)
 	elderDead = 0;
 	day = 0;
 
-	//plant a random seed at the start of the simulation for all function to use
+	//Plant a random seed at the start of the simulation for all function to use
 	srand(time(NULL));
 
-	//Set these booleans to false until 1 infected child, adult, 
-	//and elder are placed on the board respetcively
-	bool infectedChild = false;
-	bool infectedAdult = false;
-	bool infectedElder = false;
-
-	//While not all of the children have been placed
-	while (c > 0) {
-		//Create random x and y coordinates (Ignoring rows/columns 0,1,12,13)
-		int x = rand() % 10 + 2;
-		int y = rand() % 10 + 2;
-
-		//If there is currently a placeholder human in the chosen spot,
-		//and the infected child hasn't been placed yet
-		if (vect[x][y].getAge() == 0 && infectedChild == false) {
-			
-			//Places infected child in spot
-			vect[x][y] = Human(true, 1);
-
-			//Sets bool to true so no more infected children will be placed
-			infectedChild = true;
-
-			c--;
-		}
-		//If there is currently a placeholder human in the chosen spot,
-		// and an infected child has already been placed
-		else if (vect[x][y].getAge() == 0) {
-			
-			//Places non-infected child in spot
-			vect[x][y] = Human(false, 1);
-
-			c--;
-		}
-	}
-
-	//While not all of the adults have been placed
-	while (a > 0) {
-		//Create random x and y coordinates (Ignoring rows/columns 0,1,12,13)
-		int x = rand() % 10 + 2;
-		int y = rand() % 10 + 2;
-
-		//If there is currently a placeholder human in the chosen spot,
-		//and the infected adult hasn't been placed yet
-		if (vect[x][y].getAge() == 0 && infectedAdult == false) {
-
-			//Places infected adult in spot
-			vect[x][y] = Human(true, 2);
-
-			//Sets bool to true so no more infected adults will be placed
-			infectedAdult = true;
-
-			a--;
-		}
-
-		//If there is currently a placeholder human in the chosen spot,
-		// and an infected adult has already been placed
-		else if (vect[x][y].getAge() == 0) {
-
-			//Places non-infected adult in spot
-			vect[x][y] = Human(false, 2);
-
-			a--;
-		}
-	}
-
-	//While not all of the elders have been placed
-	while (e > 0) {
-		//Create random x and y coordinates (Ignoring rows/columns 0,1,12,13)
-		int x = rand() % 10 + 2;
-		int y = rand() % 10 + 2;
-
-		//If there is currently a placeholder human in the chosen spot,
-		//and the infected elder hasn't been placed yet
-		if (vect[x][y].getAge() == 0 && infectedElder == false) {
-
-			//Places infected elder in spot
-			vect[x][y] = Human(true, 3);
-
-			//Sets bool to true so no more infected elders will be placed
-			infectedElder = true;
-
-			e--;
-		}
-
-		//If there is currently a placeholder human in the chosen spot,
-		// and an infected elder has already been placed
-		else if (vect[x][y].getAge() == 0) {
-
-			//Places non-infected elder in spot
-			vect[x][y] = Human(false, 3);
-
-			e--;
-		}
-	}
+	//Places humans of different age classes on the board
+	placeHumans(c, 1, vect);
+	placeHumans(a, 2, vect);
+	placeHumans(e, 3, vect);
 }
 
 //Moves every human 1 space or no spaces depending on a random number chosen 
@@ -357,17 +267,17 @@ void Simulation::readStats(vector<vector<Human>> &vect)
 	SetConsoleTextAttribute(hConsole, 13);
 	cout << "ELDERS" << endl;
 	SetConsoleTextAttribute(hConsole, 7);
-	cout << "Total:        " << children << "         " << adults << "         " << elders << endl;
-	cout << "Alive:        " << children - childDead << "         " << adults - adultDead << "         " << elders - elderDead << endl;
-	cout << "Uninfected:   " << childUninfected << "         " << adultUninfected << "         " << elderUninfected << endl;
+	cout << "Total:        " << children << spaceDecider(children) << adults << spaceDecider(adults) << elders << endl;
+	cout << "Alive:        " << children - childDead << spaceDecider(children - childDead) << adults - adultDead << spaceDecider(adults - adultDead) << elders - elderDead << endl;
+	cout << "Uninfected:   " << childUninfected << spaceDecider(childUninfected) << adultUninfected << spaceDecider(adultUninfected) << elderUninfected << endl;
 	
 	SetConsoleTextAttribute(hConsole, 10);
-	cout << "Incubation:   " << childIncubation << "         " << adultIncubation << "         " << elderIncubation << endl;
-	cout << "Asymptomatic: " << childAsymptomatic << "         " << adultAsymptomatic << "         " << elderAsymptomatic << endl;
-	cout << "Symptomatic:  " << childSymptomatic << "         " << adultSymptomatic << "         " << elderSymptomatic << endl;
+	cout << "Incubation:   " << childIncubation << spaceDecider(childIncubation) << adultIncubation << spaceDecider(adultIncubation) << elderIncubation << endl;
+	cout << "Asymptomatic: " << childAsymptomatic << spaceDecider(childAsymptomatic) << adultAsymptomatic << spaceDecider(adultAsymptomatic) << elderAsymptomatic << endl;
+	cout << "Symptomatic:  " << childSymptomatic << spaceDecider(childSymptomatic) << adultSymptomatic << spaceDecider(adultSymptomatic) << elderSymptomatic << endl;
 	
 	SetConsoleTextAttribute(hConsole, 7);
-	cout << "Dead:         " << childDead << "         " << adultDead << "         " << elderDead << endl;
+	cout << "Dead:         " << childDead << spaceDecider(childDead) << adultDead << spaceDecider(adultDead) << elderDead << endl;
 	
 	
 	
@@ -412,4 +322,52 @@ void Simulation::readStats(vector<vector<Human>> &vect)
 		cout << "-------------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 7);
 	}
+}
+
+//Places humans of a certain age class on the board
+void Simulation::placeHumans(int humanCount, int humanClass, vector<vector<Human>>& vect)
+{
+	//Set this to false until 1 infected of this human class
+	//is placed on the board
+	bool infectedHuman = false;
+
+	//While not all of this human class has been placed
+	while (humanCount > 0) {
+		//Create random x and y coordinates (Ignoring rows/columns 0,1,12,13)
+		int x = rand() % 10 + 2;
+		int y = rand() % 10 + 2;
+
+		//If there is currently a placeholder human in the chosen spot,
+		//and the infected human hasn't been placed yet
+		if (vect[x][y].getAge() == 0 && infectedHuman == false) {
+
+			//Places infected human in spot
+			vect[x][y] = Human(true, humanClass);
+
+			//Sets bool to true so no more infected humans will be placed
+			infectedHuman = true;
+
+			humanCount--;
+		}
+		//If there is currently a placeholder human in the chosen spot,
+		// and an infected human has already been placed
+		else if (vect[x][y].getAge() == 0) {
+
+			//Places non-infected human in spot
+			vect[x][y] = Human(false, humanClass);
+
+			humanCount--;
+		}
+	}
+}
+
+string Simulation::spaceDecider(int stat)
+{
+	string spaces;
+
+	for (int i = 0; i < 9 - (stat / 10); i++) {
+		spaces += " ";
+	}
+
+	return spaces;
 }
