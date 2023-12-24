@@ -365,6 +365,8 @@ string Simulation::spaceDecider(int stat)
 {
 	string spaces;
 
+	//Creates one less space if the stat is in the double digits
+	//This creates a better looking start chart
 	for (int i = 0; i < 9 - (stat / 10); i++) {
 		spaces += " ";
 	}
