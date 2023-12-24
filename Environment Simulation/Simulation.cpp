@@ -361,6 +361,7 @@ void Simulation::placeHumans(int humanCount, int humanClass, vector<vector<Human
 	}
 }
 
+//Returns 9 or 10 spaces depending on the given stat
 string Simulation::spaceDecider(int stat)
 {
 	string spaces;
