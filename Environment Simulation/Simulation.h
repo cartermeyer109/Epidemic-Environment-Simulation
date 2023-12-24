@@ -28,5 +28,6 @@ public:
 	void proceedInfection(vector<vector<Human>>& vect);
 	void dayForward(vector<vector<Human>> &vect);
 	void readStats(vector<vector<Human>> &vect);
-
+	void placeHumans(int humanCount, int humanClass, vector<vector<Human>>& vect);
+	string spaceDecider(int stat);
 };
