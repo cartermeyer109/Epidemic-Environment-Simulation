@@ -20,3 +20,4 @@ symptomatic, or dead because of the disease. Each day the objects on the grid wi
 one grid space. An object has a chance of getting infected by another object if it is 1-2 grid
 spaces away (the infection chance will decrease with distance and age).
 
+Link to the itch.io page: https://wotatoaster.itch.io/epidemic-environment-simulation 
