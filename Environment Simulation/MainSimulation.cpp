@@ -16,7 +16,7 @@ int main() {
 	//Incubation period is just for show. It is the period of time between getting a disease to possible showing symptoms. The virus is incubating inside you, rly its just for show
 
 	//Introduces User
-	cout << "Welcome to the epidemic simulation (Lasts for 300 days)!" << endl;
+	cout << "Welcome to the epidemic simulation (Lasts up to 1000 days)!" << endl;
 	cout << "Keep in mind this is a simulation of a disease that has NO vaccine" << endl;
 	cout << "All humans start as uninfected except for 1 human from each age class" << endl;
 	cout << "Humans may move each day and the infected will spread based on age/distance" << endl;

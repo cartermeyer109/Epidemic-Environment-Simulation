@@ -21,6 +21,9 @@
     <ClInclude Include="Human.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Simulation.cpp">
@@ -32,5 +35,15 @@
     <ClCompile Include="MainSimulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Environment Simulation.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\OneDrive - University of Wisconsin-Stout\Documents\Visual Studio 2022\Data Structures Ch. Ass\EpidemicIcon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -128,12 +128,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Human.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Simulation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="MainSimulation.cpp" />
     <ClCompile Include="Simulation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Environment Simulation.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\OneDrive - University of Wisconsin-Stout\Documents\Visual Studio 2022\Data Structures Ch. Ass\EpidemicIcon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
