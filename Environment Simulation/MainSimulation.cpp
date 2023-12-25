@@ -6,6 +6,7 @@
 #include <ctime>
 #include <windows.h>
 #include <string>
+#include <conio.h>
 using namespace std;
 
 int main() {
@@ -71,21 +72,42 @@ int main() {
 
 	//Reads the stats of day 0, after placement of humans but before infection spread/movements
 	simulation.readStats(grid);
+	cout << "Exit Simulation: PRESS ESC TWICE OR Continue to next day: PRESS SPACE";
 	cin.ignore();
 
 	//Goes through 300 days of infection
 	int i = 0;
-	while (i < 300) {
+	while (i < 1000) {
 		
 		//User is able to press enter to proceed to next day mnaually
-		cout << "Continue to next day: PRESS ENTER";
-		cin.ignore();
+		while (!_kbhit()) {
 
-		//The day moves forward then stats are read again
-		simulation.dayForward(grid);
-		simulation.readStats(grid);
-		i++;
+		}
+		if (_getch() == 32) {
+			//The day moves forward then stats are read again
+			simulation.dayForward(grid);
+			if (simulation.readStats(grid) == 0) {
+				cout << "The virus is gone: The Simulation is over!" << endl;
+				break;
+			}
+			cout << "Exit Simulation: PRESS ESC TWICE OR Continue to next day: PRESS SPACE";
+			i++;
+		}
+		else if (_getch() == 27) {
+			return 0;
+		}
+	}
+	if (i == 1000) {
+		cout << "1000 days reached: The Simulation is over!" << endl;
 	}
 
-	cout << "The Simulation is over!" << endl;
+	cout << "Press ESC to exit";
+	while (_getch() != 27) {
+		while (!_kbhit()) {
+
+		}
+		if (_getch() == 27) {
+			return 1;
+		}
+	}
 }

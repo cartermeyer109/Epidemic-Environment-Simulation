@@ -156,7 +156,7 @@ void Simulation::dayForward(vector<vector<Human>> &vect)
 }
 
 //Calculates and displays all the stats in the vector
-void Simulation::readStats(vector<vector<Human>> &vect)
+bool Simulation::readStats(vector<vector<Human>> &vect)
 {
 	//Initiates consol to allow text color chance
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -321,6 +321,15 @@ void Simulation::readStats(vector<vector<Human>> &vect)
 		cout << "|" << endl;
 		cout << "-------------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 7);
+	}
+
+	//If there are no more infected return 0 so the program may be ended
+	if (children - childDead == childUninfected && adults - adultDead == adultUninfected && elders - elderDead == elderUninfected) {
+		return 0;
+	}
+	//Else return 0 so it can be continued
+	else {
+		return 1;
 	}
 }
 
