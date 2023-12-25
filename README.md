@@ -1,7 +1,7 @@
 # Epidemic-Environment-Simulation
 
 This is an Epidemic Environment Simulation. This is a simulation that shows the spread of a
-disease with no vaccine on humans over 300 days on a visual grid. All humans start as uninfected
+disease with no vaccine on humans over many days on a visual grid. All humans start as uninfected
 except for 1 human from each age class (Child/Adult/Elder). Humans may move each day and the
 infection will spread based on age/distance from the infected/if the virus was previously had.
 

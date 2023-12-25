@@ -79,13 +79,16 @@ int main() {
 	int i = 0;
 	while (i < 1000) {
 		
-		//User is able to press enter to proceed to next day mnaually
+		//Program does nothing while waiting for user input
 		while (!_kbhit()) {
 
 		}
+		//If user presses space
 		if (_getch() == 32) {
-			//The day moves forward then stats are read again
+			//The day moves forward then stats are read
 			simulation.dayForward(grid);
+
+			//If readstats returns 0: end simulation
 			if (simulation.readStats(grid) == 0) {
 				cout << "The virus is gone: The Simulation is over!" << endl;
 				break;
@@ -93,19 +96,21 @@ int main() {
 			cout << "Exit Simulation: PRESS ESC TWICE OR Continue to next day: PRESS SPACE";
 			i++;
 		}
+		
+		//If user presses escape end simulation
 		else if (_getch() == 27) {
 			return 0;
 		}
 	}
+
+	//If the simulation is ending due to reaching 1000 days: print the following text
 	if (i == 1000) {
 		cout << "1000 days reached: The Simulation is over!" << endl;
 	}
 
+	//Waits for user to press escape to end the programm
 	cout << "Press ESC to exit";
 	while (_getch() != 27) {
-		while (!_kbhit()) {
-
-		}
 		if (_getch() == 27) {
 			return 1;
 		}
